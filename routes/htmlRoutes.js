@@ -1,8 +1,12 @@
 const path = require("path");
 
 function htmlRoutes(app) {
+    app.get("/", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+    });
+
     app.get("/exercise", (req, res) => {
-        res.sendFile("/Users/rogerpouncey/Desktop/coding/bootcamp/Workout-Tracker/public/exercise.html", (err) => {
+        res.sendFile(path.join(__dirname, "../public/exercise.html"), (err) => {
             if (err) {
                 console.log(err)
             } else {
@@ -12,7 +16,7 @@ function htmlRoutes(app) {
     });
 
     app.get("/stats", (req, res) => {
-        res.sendFile("/Users/rogerpouncey/Desktop/coding/bootcamp/Workout-Tracker/public/stats.html", (err) => {
+        res.sendFile(path.join(__dirname, "../public/stats.html"), (err) => {
             if (err) {
                 console.log(err)
             } else {
