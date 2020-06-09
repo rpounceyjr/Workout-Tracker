@@ -1,4 +1,5 @@
-const db = require("../models")
+const db = require("../models");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 function apiRoutes(app) {
 
@@ -27,18 +28,28 @@ function apiRoutes(app) {
     });
 
 
-app.post("/api/workouts", (req, res) => {
-    const newWorkout = new db.Workout(req.body);
-    db.Workout.create(newWorkout)
-        .then(workout => {
-            res.json(workout);
-        })
-        .catch((err) => {
+    app.post("/api/workouts", (req, res) => {
+        const newWorkout = new db.Workout(req.body);
+        db.Workout.create(newWorkout)
+            .then(workout => {
+                res.json(workout);
+            })
+            .catch((err) => {
+                if (err) {
+                    console.log(err)
+                }
+            });
+    });
+
+    app.put("/api/workouts/:id", (req, res) => {
+        db.Workout.updateOne({_id: ObjectId(req.params.id)},{ $push : { exercises: req.body } }, (err, data) => {
             if (err) {
-                console.log(err)
+                console.log(err);
+            } else {
+                res.json(data);
             }
         });
-});
+    });
 
 
 };
