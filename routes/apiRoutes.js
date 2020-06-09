@@ -28,7 +28,8 @@ function apiRoutes(app) {
 
 
 app.post("/api/workouts", (req, res) => {
-    db.Workout.create(req.body)
+    const newWorkout = new db.Workout(req.body);
+    db.Workout.create(newWorkout)
         .then(workout => {
             res.json(workout);
         })
