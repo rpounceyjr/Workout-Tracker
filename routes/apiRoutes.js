@@ -42,10 +42,12 @@ function apiRoutes(app) {
     });
 
     app.put("/api/workouts/:id", (req, res) => {
-        db.Workout.updateOne({_id: ObjectId(req.params.id)},{ $push : { exercises: req.body } }, (err, data) => {
+        console.log("PUT REQ BODY", req.body)
+        db.Workout.updateOne({ _id: ObjectId(req.params.id) }, { $push: { exercises: req.body } }, (err, data) => {
             if (err) {
                 console.log(err);
             } else {
+                console.log("PUT DATA", data)
                 res.json(data);
             }
         });
