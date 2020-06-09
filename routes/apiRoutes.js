@@ -53,6 +53,16 @@ function apiRoutes(app) {
         });
     });
 
+    app.get("/api/workouts/range", (req, res) => {
+        db.Workout.find({}, (err, data) => {
+            if(err) {
+                console.log(err);
+            } else {
+                res.json(data);
+            }
+        });
+    });
+
 
 };
 
