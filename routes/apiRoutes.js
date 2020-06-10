@@ -16,14 +16,17 @@ function apiRoutes(app) {
                 let weight = 0;
                 workout.exercises.forEach(exercise => {
 
-                    // logic to find the total duration and total weight 
-                    if (exercise.duration) {
-                        duration += exercise.duration
-                    }
+                    // Adds up total time of exercises
+                    duration += exercise.duration
+                   
+                    // Adds up total weight of exercises if exercise.weight exists
+                    // (i.e. if the exercise is a resistance workout)
                     if (exercise.weight) {
                         weight += exercise.weight
                     }
                 });
+
+                // Sets the totalDuration and totalWeight
                 workout.totalDuration = duration;
                 workout.totalWeight = weight;
 
@@ -59,7 +62,7 @@ function apiRoutes(app) {
     // Get route that gets all exercises for the stats page
     app.get("/api/workouts/range", (req, res) => {
         db.Workout.find({}, (err, data) => {
-            if(err) {
+            if (err) {
                 console.log(err);
             } else {
                 res.json(data);
