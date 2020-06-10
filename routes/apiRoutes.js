@@ -18,31 +18,27 @@ function apiRoutes(app) {
                 });
                 workout.totalDuration = duration;
                 workout.totalWeight = weight;
-                console.log(workout);
+
                 res.json(workout);
             })
             .catch(err => {
                 res.json(err);
-            })
-
+            });
     });
 
 
     app.post("/api/workouts", (req, res) => {
-        const newWorkout = new db.Workout(req.body);
-        db.Workout.create(newWorkout)
+        db.Workout.create({})
             .then(workout => {
                 res.json(workout);
             })
             .catch((err) => {
-                if (err) {
-                    console.log(err)
-                }
+                res.json(err);
             });
     });
 
     app.put("/api/workouts/:id", (req, res) => {
-        console.log("PUT REQ BODY", req.body)
+        // console.log("PUT REQ BODY", req.body)
         db.Workout.updateOne({ _id: ObjectId(req.params.id) }, { $push: { exercises: req.body } }, (err, data) => {
             if (err) {
                 console.log(err);
