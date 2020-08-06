@@ -4,6 +4,8 @@
 
 Experience the cleverly-named Fitness Tracker, an app that uses Node, Express, MongoDB, and Mongoose to track your workout progress and help you reach your fitness goals!
 
+Start tracking your workouts [here](https://pacific-harbor-13082.herokuapp.com/).
+
 ![Workout Tracker Stats](public/images/workout_tracker_top.png)
 
 Email: rpounceyjr@gmail.com
